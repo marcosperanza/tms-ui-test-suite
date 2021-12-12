@@ -6,7 +6,7 @@ const
     isCI = require('is-ci');
 
 exports.config = {
-    baseUrl: 'http://localhost:3000',
+    baseUrl: process.env.TARGET_URL ? process.env.TARGET_URL : 'http://localhost:3000/',
 
     chromeDriver: require(`chromedriver/lib/chromedriver`).path,
 
