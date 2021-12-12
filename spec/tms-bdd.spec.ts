@@ -3,6 +3,7 @@ import 'jasmine';
 import {Ensure, equals, includes, not} from '@serenity-js/assertions';
 import {actorCalled, engage} from '@serenity-js/core';
 import {Click, isEnabled, isPresent, Text, Wait, Website} from '@serenity-js/protractor';
+import {DeleteRequest, GetRequest, LastResponse, Send} from '@serenity-js/rest';
 
 import {Actors} from '../src';
 import {Tms} from '../src/screenplay/selector/tms';
@@ -15,7 +16,18 @@ import {SaveCalendarDate} from '../src/screenplay/task/save-calendar-date.task';
 
 describe('TMS website', () => {
 
-    beforeEach(() => engage(new Actors()));
+    beforeEach(() => {
+        engage(new Actors())
+    });
+
+    /**
+     * Clean the environment using the REST API delete all!
+     */
+    it(`clear env`, () =>
+        actorCalled('Jasmine').attemptsTo(
+            Send.a(DeleteRequest.to('/activity')),
+            Ensure.that(LastResponse.status(), equals(200))
+        ));
 
     it(`add a new todo manual date`, () =>
         actorCalled('Jasmine').attemptsTo(
