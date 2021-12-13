@@ -3,7 +3,8 @@ import 'jasmine';
 import {Ensure, equals, includes, not} from '@serenity-js/assertions';
 import {actorCalled, engage} from '@serenity-js/core';
 import {Click, isEnabled, isPresent, Text, Wait, Website} from '@serenity-js/protractor';
-import {DeleteRequest, GetRequest, LastResponse, Send} from '@serenity-js/rest';
+import {DeleteRequest, LastResponse, Send} from '@serenity-js/rest';
+import {browser} from 'protractor';
 
 import {Actors} from '../src';
 import {Tms} from '../src/screenplay/selector/tms';
@@ -23,11 +24,17 @@ describe('TMS website', () => {
     /**
      * Clean the environment using the REST API delete all!
      */
-    it(`clear env`, () =>
+    it(`clear env`, () => {
+        const end = browser.baseUrl.indexOf('//');
+        const prot = browser.baseUrl.slice(0, end + 2);
+        const tail  = browser.baseUrl.slice(end + 2);
+
         actorCalled('Jasmine').attemptsTo(
-            Send.a(DeleteRequest.to('/activity')),
+            Send.a(DeleteRequest.to(prot + 'auth:secret@' + tail +'/api/activity')),
             Ensure.that(LastResponse.status(), equals(200))
-        ));
+        )
+    }
+    );
 
     it(`add a new todo manual date`, () =>
         actorCalled('Jasmine').attemptsTo(
