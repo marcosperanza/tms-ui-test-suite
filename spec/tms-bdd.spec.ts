@@ -89,8 +89,10 @@ describe('TMS website', () => {
     it(`remove third item`, () =>
         actorCalled('Jasmine').attemptsTo(
             OpenTms.called(),
+            Ensure.that(Website.title(), includes('TMS')),
             Ensure.that(Tms.thirdItemRemoveBtn, isEnabled()),
             Click.on(Tms.thirdItemRemoveBtn),
+            Click.on(Tms.acceptConfirmBtn),
             Ensure.that(Tms.thirdItemRemoveBtn, not(isPresent())),
 
         ));

@@ -12,6 +12,7 @@ export class Tms {
     static secondItemDivDone = Target.the(`secondItem done`).located(by.css('#activity-list .done .description-item'));
 
     static thirdItemRemoveBtn = Target.the(`secondItem`).located(by.css('#activity-list > div:nth-child(3) .done-block .p-button'));
+    static acceptConfirmBtn = Target.the(`accept remove btn`).located(by.css('.p-confirm-popup-accept'));
 
     static calendarDlgSndRow3Col = Target.the(`dateTime`).located(by.css('#icon > div > div > div > div.p-datepicker-calendar-container > table > tbody > tr:nth-child(2) > td:nth-child(3) > span'));
     static calendarDlgFirstRow3Col = Target.the(`dateTime`).located(by.css('#icon > div > div > div > div.p-datepicker-calendar-container > table > tbody > tr:nth-child(2) > td:nth-child(2) > span'));
