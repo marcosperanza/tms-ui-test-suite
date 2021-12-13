@@ -10,10 +10,10 @@ import {Tms} from '../selector/tms';
 export class FillActivityDesc {
     static called = (description: string) =>
         Task.where(`#actor fill description "${ description }""`,
-            Check.whether(Tms.openNewActivityDialogueBtn, isPresent())
-                .andIfSo(
-                    Click.on(Tms.calendarBtn),
-                ),
+            // Check.whether(Tms.openNewActivityDialogueBtn, isPresent())
+            //     .andIfSo(
+            //         Click.on(Tms.calendarBtn),
+            //     ),
             Enter.theValue(description).into(Tms.descriptionInputNewActivityDialogueBtn),
 
         )

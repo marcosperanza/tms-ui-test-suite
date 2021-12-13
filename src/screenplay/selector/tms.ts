@@ -2,8 +2,7 @@ import {Target} from '@serenity-js/protractor/lib/screenplay/questions/targets'
 import {by} from 'protractor';
 
 export class Tms {
-    static calendarBtn = Target.the(`Calendar`).located(by.css('#newActivityDialogue > div:nth-child(3) > div > button'));
-    static openNewActivityDialogueBtn = Target.the(`one activity button`).located(by.id('open-new-activity-dialogue'));
+    static calendarBtn = Target.the(`Calendar`).located(by.css('#calendar-btn'));
     static descriptionInputNewActivityDialogueBtn = Target.the(`description`).located(by.id('description'));
     static dateInputNewActivityDialogueBtn = Target.the(`date`).located(by.id('date'));
     static saveBtn = Target.the(`save`).located(by.id('save-activity'));
